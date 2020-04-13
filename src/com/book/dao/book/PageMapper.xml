@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.dao.book.PageMapper">
+	<!-- 书写一个分页接口中去获得数据总数的方法 -->
+	<select id="getCount" resultType="Integer">
+		select count(1) from system_book_info
+	</select>
+	<!-- 自定义一个实体类Book和数据库表book的sql映射 -->
+	<resultMap type="BookInfo" id="blist">
+		<result property="id" column="id"/>
+		<result property="bookName" column="bookName"/>
+		<result property="author" column="Author"/>
+		<result property="categoryId" column="categoryId"/>
+		<result property="publisher" column="publisher"/>
+		<result property="price" column="Price"/>
+		<result property="photo" column="photo"/>
+		<!-- 为分类设置映射 -->
+		<association property="bookcategory" javaType="BookCategory" autoMapping="true"></association>
+	</resultMap>
+	<!-- 分页查询数据的方法 -->
+	<select id="getBookData" resultMap="blist">
+		select b.*,c.category from system_book_info b
+			inner join system_book_category c on(b.categoryId=c.id)
+		 	 limit #{from},#{pageSize}
+	</select>
+	<select id="getFindByBookNameCount" resultType="Integer">
+		select count(1) from system_book_info
+		<where>
+			<if test="bookName!=null">
+				bookName like concat("%",#{bookName} ,"%")
+			</if>
+		</where>
+	</select>
+	<select id="getFindByBookNameData" resultMap="blist">
+		select b.*,c.category from system_book_info b
+			inner join system_book_category c on(b.categoryId=c.id)
+			 <where>
+			 	<if test="bookName!=null">
+			 		bookName like concat("%",#{bookName} ,"%")
+			 	</if>
+			 </where>
+		 	 limit #{from},#{pageSize}	
+	</select>
+</mapper>

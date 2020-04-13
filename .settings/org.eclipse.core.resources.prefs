@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//WebContent/admin/admin-home.jsp=UTF-8
+encoding//WebContent/admin/admin-login.jsp=UTF-8
+encoding//WebContent/admin/book-edit.jsp=UTF-8
+encoding//WebContent/admin/book-mgr.jsp=UTF-8
+encoding//WebContent/admin/category-mgr.jsp=UTF-8
+encoding//WebContent/user/cart.jsp=UTF-8
+encoding//WebContent/user/index.jsp=UTF-8
+encoding//WebContent/user/user-login.jsp=UTF-8
+encoding//WebContent/user/user-regist.jsp=UTF-8
+encoding//resources/datasource.properties=UTF-8
+encoding//resources/log4j.properties=UTF-8
+encoding/<project>=UTF-8
